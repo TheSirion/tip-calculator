@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Card from "./components/Card";
+import Control from "./components/Control";
+import TipConsole from "./components/TipConsole";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='min-h-screen flex flex-col justify-center items-center bg-light-grayish-cyan-200'>
+      <h1>SPLITTER</h1>
+      <Card>
+        <Control />
+        <TipConsole />
+      </Card>
     </div>
   );
-}
+};
 
 export default App;
