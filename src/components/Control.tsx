@@ -7,7 +7,7 @@ const Control = () => {
         </label>
         <input
           type='number'
-          className='bg-light-grayish-cyan-100 text-very-dark-cyan font-bold'
+          className='bg-light-grayish-cyan-100 text-very-dark-cyan font-bold text-right'
         />
       </form>
 
@@ -31,7 +31,7 @@ const Control = () => {
         </label>
         <input
           type='number'
-          className='bg-light-grayish-cyan-100 text-very-dark-cyan font-bold'
+          className='bg-light-grayish-cyan-100 text-very-dark-cyan font-bold text-right'
         />
       </form>
     </div>

@@ -9,7 +9,7 @@ const TipConsole: React.FC = () => {
           <div className='text-dark-grayish-cyan-100 row-start-2 row-end-3 text-xs'>
             / person
           </div>
-          <div className='text-strong-cyan row-span-2 text-3xl font-bold'>
+          <div className='text-strong-cyan row-span-2 text-3xl font-bold text-right'>
             {"$4.27"}
           </div>
         </div>
@@ -19,7 +19,7 @@ const TipConsole: React.FC = () => {
           <div className='text-dark-grayish-cyan-100 row-start-2 row-end-3 text-xs'>
             / person
           </div>
-          <div className='text-strong-cyan row-span-2 text-3xl font-bold'>
+          <div className='text-strong-cyan row-span-2 text-3xl font-bold text-right'>
             {"$32.79"}
           </div>
         </div>
