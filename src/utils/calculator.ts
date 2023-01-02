@@ -1,11 +1,11 @@
-export function calculateTip(bill: number, tip: number): number {
+export const calculateTip = (bill: number, tip: number): number => {
   return bill * tip;
-}
+};
 
-export function divideByPeople(
+export const divideByPeople = (
   bill: number,
   tip: number,
-  numOfPeople: number
-): number {
-  return calculateTip(bill, tip) / numOfPeople;
-}
+  numPeople: number = 1
+): number => {
+  return calculateTip(bill, tip) / numPeople;
+};

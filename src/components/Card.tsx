@@ -1,12 +1,14 @@
+import React from "react";
+
 interface Props {
   children: React.ReactNode;
-  className?: string;
 }
 
-const Card: React.FC<Props> = props => {
+const Card: React.FC<Props> = (props) => {
+  const { children } = props;
   return (
-    <div className='max-w-6xl grid grid-cols-2 gap-x-6 bg-white p-5 rounded-xl'>
-      {props.children}
+    <div className="grid max-w-6xl grid-cols-2 gap-x-6 rounded-xl bg-white p-5">
+      {children}
     </div>
   );
 };
