@@ -1,10 +1,10 @@
 import React, { ChangeEventHandler } from "react";
 
 interface ControlState {
-  bill: string;
+  bill: number;
   numPeople: number;
   handleBillChange: ChangeEventHandler<HTMLInputElement>;
-  handleTipChange: Function;
+  handleTipChange: (value: number) => void;
   handleNumPeopleChange: ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -23,8 +23,8 @@ const Control: React.FunctionComponent<ControlState> = ({
         </label>
         <input
           value={bill}
+          type="number"
           onChange={handleBillChange}
-          type="text"
           placeholder="0"
           className="rounded bg-light-grayish-cyan-100 p-1 text-right font-bold text-very-dark-cyan"
         />
@@ -60,8 +60,8 @@ const Control: React.FunctionComponent<ControlState> = ({
         </label>
         <input
           value={numPeople}
-          onChange={() => handleNumPeopleChange}
-          type="text"
+          type="number"
+          onChange={handleNumPeopleChange}
           placeholder="0"
           className="rounded bg-light-grayish-cyan-100 p-1 text-right font-bold text-very-dark-cyan"
         />

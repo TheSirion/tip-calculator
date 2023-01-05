@@ -4,7 +4,7 @@ import Console from "./components/Console";
 import Control from "./components/Control";
 
 const App = (): ReactElement => {
-  const [bill, setBill] = useState("");
+  const [bill, setBill] = useState(0);
   const [tip, setTip] = useState(0);
   const [numPeople, setNumPeople] = useState(0);
 
@@ -13,25 +13,25 @@ const App = (): ReactElement => {
   ): void => {
     event.preventDefault();
     const value = parseInt(event.target.value, 10);
-    // const formattedValue = new Intl.NumberFormat("en-US", {
-    //   style: "currency",
-    //   currency: "USD",
-    // }).format(value);
+    if (value === null) setBill(0);
 
-    setBill(value.toFixed(2));
-    console.log(value.toFixed(2));
+    setBill(value);
   };
 
   const handleTipChange = (tipPercentage: number): void => {
     setTip(tipPercentage);
-    console.log(tip);
+    console.log(tipPercentage);
+    console.log("tip state:", tip);
   };
 
   const handleNumPeopleChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
     event.preventDefault();
-    setNumPeople(parseInt(event.target.value));
+    const value = event.target.value;
+    if (value === null) setNumPeople(0);
+
+    setNumPeople(parseInt(value));
     console.log(numPeople);
   };
 
