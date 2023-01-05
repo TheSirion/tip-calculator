@@ -1,12 +1,19 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import Card from "./components/Card";
 import Console from "./components/Console";
 import Control from "./components/Control";
+import { calculateTip, divideByPeople } from "./utils/calculator";
 
 const App = (): ReactElement => {
   const [bill, setBill] = useState(0);
   const [tip, setTip] = useState(0);
   const [numPeople, setNumPeople] = useState(0);
+
+  useEffect(() => {
+    console.log("bill state:", bill);
+    console.log("tip state:", tip);
+    console.log("numPeople state:", numPeople);
+  }, [bill, tip, numPeople]);
 
   const handleBillChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -16,12 +23,11 @@ const App = (): ReactElement => {
     if (value === null) setBill(0);
 
     setBill(value);
+    const total = divideByPeople(bill, numPeople);
   };
 
   const handleTipChange = (tipPercentage: number): void => {
     setTip(tipPercentage);
-    console.log(tipPercentage);
-    console.log("tip state:", tip);
   };
 
   const handleNumPeopleChange = (
@@ -32,7 +38,6 @@ const App = (): ReactElement => {
     if (value === null) setNumPeople(0);
 
     setNumPeople(parseInt(value));
-    console.log(numPeople);
   };
 
   return (
@@ -49,7 +54,7 @@ const App = (): ReactElement => {
           handleTipChange={handleTipChange}
           handleNumPeopleChange={handleNumPeopleChange}
         />
-        <Console />
+        <Console tipAmount={calculateTip(bill, tip)} total={divideByPeople(bill, tip, numPeople)} />
       </Card>
     </div>
   );

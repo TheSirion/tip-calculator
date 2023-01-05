@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler } from "react";
 
-interface ControlState {
+interface ControlProps {
   bill: number;
   numPeople: number;
   handleBillChange: ChangeEventHandler<HTMLInputElement>;
@@ -8,7 +8,7 @@ interface ControlState {
   handleNumPeopleChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const Control: React.FunctionComponent<ControlState> = ({
+const Control: React.FunctionComponent<ControlProps> = ({
   bill,
   numPeople,
   handleBillChange,
@@ -22,7 +22,7 @@ const Control: React.FunctionComponent<ControlState> = ({
           Bill
         </label>
         <input
-          value={bill}
+          value={bill.toFixed(2)}
           type="number"
           onChange={handleBillChange}
           placeholder="0"
@@ -35,19 +35,19 @@ const Control: React.FunctionComponent<ControlState> = ({
           Select Tip %
         </p>
         <div className="grid grid-cols-3 grid-rows-2 gap-2">
-          <button className="btn-primary" onClick={() => handleTipChange(5)}>
+          <button className="btn-primary" onClick={() => handleTipChange(0.05)}>
             5%
           </button>
-          <button className="btn-primary" onClick={() => handleTipChange(10)}>
+          <button className="btn-primary" onClick={() => handleTipChange(0.1)}>
             10%
           </button>
-          <button className="btn-primary" onClick={() => handleTipChange(15)}>
+          <button className="btn-primary" onClick={() => handleTipChange(0.15)}>
             15%
           </button>
-          <button className="btn-primary" onClick={() => handleTipChange(25)}>
+          <button className="btn-primary" onClick={() => handleTipChange(0.25)}>
             25%
           </button>
-          <button className="btn-primary" onClick={() => handleTipChange(50)}>
+          <button className="btn-primary" onClick={() => handleTipChange(0.5)}>
             50%
           </button>
           <button className="btn-secondary">Custom</button>

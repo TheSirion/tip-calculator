@@ -1,4 +1,12 @@
-const Console: React.FC = () => {
+interface ConsoleProps {
+  tipAmount: number;
+  total: number;
+}
+
+const Console: React.FunctionComponent<ConsoleProps> = ({
+  tipAmount,
+  total,
+}) => {
   return (
     <div className="flex flex-col justify-between rounded-lg bg-very-dark-cyan p-5">
       <div>
@@ -10,7 +18,7 @@ const Console: React.FC = () => {
             / person
           </div>
           <div className="row-span-2 text-right text-3xl font-bold text-strong-cyan">
-            {"$4.27"}
+            {tipAmount}
           </div>
         </div>
 
@@ -22,7 +30,7 @@ const Console: React.FC = () => {
             / person
           </div>
           <div className="row-span-2 text-right text-3xl font-bold text-strong-cyan">
-            {"$32.79"}
+            {total.toFixed(2)}
           </div>
         </div>
       </div>
