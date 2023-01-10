@@ -23,7 +23,6 @@ const App = (): ReactElement => {
     if (value === null) setBill(0);
 
     setBill(value);
-    const total = divideByPeople(bill, numPeople);
   };
 
   const handleTipChange = (tipPercentage: number): void => {
@@ -40,6 +39,12 @@ const App = (): ReactElement => {
     setNumPeople(parseInt(value));
   };
 
+  const reset = (): void => {
+    setBill(0);
+    setTip(0);
+    setNumPeople(0);
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-light-grayish-cyan-200">
       <div className="mb-[2.75em] font-bold tracking-[.4em] text-dark-grayish-cyan-200">
@@ -54,7 +59,11 @@ const App = (): ReactElement => {
           handleTipChange={handleTipChange}
           handleNumPeopleChange={handleNumPeopleChange}
         />
-        <Console tipAmount={calculateTip(bill, tip)} total={divideByPeople(bill, tip, numPeople)} />
+        <Console
+          tipAmount={calculateTip(bill, tip, numPeople)}
+          total={divideByPeople(bill, tip, numPeople)}
+          reset={reset}
+        />
       </Card>
     </div>
   );

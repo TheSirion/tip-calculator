@@ -22,7 +22,7 @@ const Control: React.FunctionComponent<ControlProps> = ({
           Bill
         </label>
         <input
-          value={bill.toFixed(2)}
+          value={bill}
           type="number"
           onChange={handleBillChange}
           placeholder="0"
