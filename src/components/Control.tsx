@@ -1,9 +1,11 @@
 import React, { ChangeEventHandler } from "react";
+import CurrencyInput from "react-currency-input-field";
 
 interface ControlProps {
   bill: number;
   numPeople: number;
-  handleBillChange: ChangeEventHandler<HTMLInputElement>;
+  // handleBillChange: ChangeEventHandler<HTMLInputElement>;
+  handleBillChange: (value: number) => void;
   handleTipChange: (value: number) => void;
   handleNumPeopleChange: ChangeEventHandler<HTMLInputElement>;
 }
@@ -21,11 +23,13 @@ const Control: React.FunctionComponent<ControlProps> = ({
         <label className="mb-1 text-sm font-bold text-dark-grayish-cyan-200">
           Bill
         </label>
-        <input
+        <CurrencyInput
           value={bill}
+          name="bill"
           type="number"
-          onChange={handleBillChange}
-          placeholder="0"
+          onValueChange={(value) => handleBillChange(value)}
+          decimalsLimit={2}
+          placeholder="$ 0"
           className="rounded bg-light-grayish-cyan-100 p-1 text-right font-bold text-very-dark-cyan"
         />
       </form>
@@ -61,8 +65,9 @@ const Control: React.FunctionComponent<ControlProps> = ({
         <input
           value={numPeople}
           type="number"
+          min={1}
           onChange={handleNumPeopleChange}
-          placeholder="0"
+          placeholder="1"
           className="rounded bg-light-grayish-cyan-100 p-1 text-right font-bold text-very-dark-cyan"
         />
       </form>

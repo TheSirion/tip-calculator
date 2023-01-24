@@ -7,21 +7,31 @@ import { calculateTip, divideByPeople } from "./utils/calculator";
 const App = (): ReactElement => {
   const [bill, setBill] = useState(0);
   const [tip, setTip] = useState(0);
-  const [numPeople, setNumPeople] = useState(0);
+  const [numPeople, setNumPeople] = useState(1);
+
+  const numberFormat = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
 
   useEffect(() => {
     console.log("bill state:", bill);
-    console.log("tip state:", tip);
-    console.log("numPeople state:", numPeople);
+    // console.log("tip state:", tip);
+    // console.log("numPeople state:", numPeople);
+    console.log("--------------------");
   }, [bill, tip, numPeople]);
 
-  const handleBillChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    event.preventDefault();
-    const value = parseInt(event.target.value, 10);
-    if (value === null) setBill(0);
+  // const handleBillChange = (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ): void => {
+  //   event.preventDefault();
 
+  //   const value = numberFormat.format(parseFloat(event.target.value));
+  //   // const value = parseFloat(event.target.value).toFixed(2);
+  //   setBill(parseFloat(value));
+  // };
+
+  const handleBillChange = (value: number): void => {
     setBill(value);
   };
 
@@ -34,9 +44,11 @@ const App = (): ReactElement => {
   ): void => {
     event.preventDefault();
     const value = event.target.value;
-    if (value === null) setNumPeople(0);
-
-    setNumPeople(parseInt(value));
+    if (Number.isNaN(parseInt(value, 10))) {
+      setNumPeople(0);
+    } else {
+      setNumPeople(parseInt(value, 10));
+    }
   };
 
   const reset = (): void => {
