@@ -8,4 +8,13 @@ export const calculateTipPerPerson = (
   bill: number,
   tip: number,
   numberOfPeople: number
-): number => (bill * tip) / numberOfPeople;
+): number => {
+  if (
+    typeof bill === "number" &&
+    typeof tip === "number" &&
+    typeof numberOfPeople === "number"
+  ) {
+    return (bill * tip) / numberOfPeople;
+  }
+  return 0;
+};

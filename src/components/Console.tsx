@@ -1,4 +1,5 @@
 import { useContext } from "react";
+
 import { CalculatorContext } from "../contexts/Calculator.context";
 
 const Console: React.FunctionComponent = () => {
@@ -11,7 +12,7 @@ const Console: React.FunctionComponent = () => {
   const values = [tipVal, totalVal];
 
   return (
-    <div className="flex flex-col justify-between rounded-lg bg-very-dark-cyan p-5">
+    <div className="flex flex-col justify-start rounded-lg bg-very-dark-cyan p-5">
       {strings.map((s, i) => {
         return (
           <div key={s}>
@@ -31,7 +32,7 @@ const Console: React.FunctionComponent = () => {
       })}
       <button
         onClick={resetValues}
-        className="w-full rounded-md bg-strong-cyan py-2 text-sm font-bold text-very-dark-cyan active:bg-light-grayish-cyan-200"
+        className="mt-auto w-full rounded-md bg-strong-cyan py-2 text-sm font-bold text-very-dark-cyan active:bg-light-grayish-cyan-200"
       >
         RESET
       </button>
