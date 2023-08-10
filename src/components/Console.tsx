@@ -3,11 +3,13 @@ import { useContext } from "react";
 import { CalculatorContext } from "../contexts/Calculator.context";
 
 const Console: React.FunctionComponent = () => {
-  const { bill, tip, numberOfPeople, total, resetValues } =
-    useContext(CalculatorContext);
+  const { tipPerPerson, total, resetValues } = useContext(CalculatorContext);
 
   const strings = ["Tip Amount", "Total"];
-  const tipVal = tip !== null && tip !== Infinity ? tip.toFixed(2) : 0;
+  const tipVal =
+    tipPerPerson !== null && tipPerPerson !== Infinity
+      ? tipPerPerson.toFixed(2)
+      : 0;
   const totalVal = total !== null && total !== Infinity ? total.toFixed(2) : 0;
   const values = [tipVal, totalVal];
 

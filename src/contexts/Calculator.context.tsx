@@ -1,6 +1,9 @@
 import { ReactElement, createContext, useEffect, useReducer } from "react";
 
-import { calculateBillWithTipPerPerson } from "../utils/calculator";
+import {
+  calculateBillWithTipPerPerson,
+  calculateTipPerPerson,
+} from "../utils/calculator";
 import { createAction } from "./Calculator.action";
 import { calculatorReducer, initialState } from "./Calculator.reducer";
 import CALCULATOR_ACTION_TYPES from "./Calculator.types";
@@ -9,6 +12,7 @@ interface CalculatorContextType {
   bill: number | null;
   tip: number | null;
   numberOfPeople: number | null;
+  tipPerPerson: number | null;
   total: number | null;
   handleBillChange: (billValue: number) => void;
   handleTipChange: (tipValue: number) => void;
@@ -20,6 +24,7 @@ export const CalculatorContext = createContext<CalculatorContextType>({
   bill: null,
   tip: null,
   numberOfPeople: null,
+  tipPerPerson: null,
   total: null,
   handleBillChange: () => {},
   handleTipChange: () => {},
@@ -36,7 +41,7 @@ export const CalculatorProvider = ({
 }: CalculatorProviderProps): ReactElement => {
   const [state, dispatch] = useReducer(calculatorReducer, initialState);
 
-  const { bill, tip, numberOfPeople, total } = state;
+  const { bill, tip, numberOfPeople, tipPerPerson, total } = state;
 
   const handleBillChange = (billValue: number): void => {
     dispatch(createAction(CALCULATOR_ACTION_TYPES.SET_BILL, billValue));
@@ -66,6 +71,10 @@ export const CalculatorProvider = ({
         tip,
         numberOfPeople
       );
+      const tipCalc = calculateTipPerPerson(bill, tip, numberOfPeople);
+      dispatch(
+        createAction(CALCULATOR_ACTION_TYPES.SET_TIP_PER_PERSON, tipCalc)
+      );
       dispatch(createAction(CALCULATOR_ACTION_TYPES.SET_TOTAL, totalPerPerson));
     }
 
@@ -75,12 +84,13 @@ export const CalculatorProvider = ({
       `numPeople: ${numberOfPeople !== null ? numberOfPeople : "null"}`
     );
     console.log(`total: ${total !== null ? total : "null"}`);
-  }, [bill, tip, numberOfPeople]);
+  }, [bill, tip, numberOfPeople, tipPerPerson, total]);
 
   const value: CalculatorContextType = {
     bill,
     tip,
     numberOfPeople,
+    tipPerPerson,
     total,
     handleBillChange,
     handleTipChange,
