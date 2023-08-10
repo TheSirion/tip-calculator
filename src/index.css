@@ -8,6 +8,7 @@
   * {
     font-family: 'Space Mono', monospace;
   }
+
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -18,7 +19,7 @@
 
 @layer components {
   .btn-primary {
-    @apply py-2 font-bold bg-very-dark-cyan text-white rounded-md transition  ease-in duration-150 active:bg-light-grayish-cyan-200 active:text-very-dark-cyan;
+    @apply py-2 font-bold bg-very-dark-cyan text-white rounded-md transition ease-in duration-150;
   }
 
   .btn-secondary {

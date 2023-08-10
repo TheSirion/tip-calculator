@@ -77,13 +77,6 @@ export const CalculatorProvider = ({
       );
       dispatch(createAction(CALCULATOR_ACTION_TYPES.SET_TOTAL, totalPerPerson));
     }
-
-    console.log(`bill: ${bill !== null ? bill : "null"}`);
-    console.log(`tip: ${tip !== null ? tip : "null"}`);
-    console.log(
-      `numPeople: ${numberOfPeople !== null ? numberOfPeople : "null"}`
-    );
-    console.log(`total: ${total !== null ? total : "null"}`);
   }, [bill, tip, numberOfPeople, tipPerPerson, total]);
 
   const value: CalculatorContextType = {

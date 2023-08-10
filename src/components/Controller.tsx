@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import { CalculatorContext } from "../contexts/Calculator.context";
 
-const Control: React.FunctionComponent = () => {
+const Controller: React.FunctionComponent = () => {
   const [isNumPeopleValid, setIsNumPeopleValid] = useState(true);
+  const [activeButton, setActiveButton] = useState(0);
 
   const tipOptions = [
     { label: "5%", value: 0.05 },
@@ -14,6 +15,7 @@ const Control: React.FunctionComponent = () => {
 
   const {
     bill,
+    tip,
     numberOfPeople,
     handleBillChange,
     handleTipChange,
@@ -43,6 +45,29 @@ const Control: React.FunctionComponent = () => {
     return true;
   };
 
+  const handleSelectedButton = (value: number): void => {
+    setActiveButton(value);
+    handleTipChange(value);
+  };
+
+  const renderTipButtons = (): JSX.Element[] => {
+    return tipOptions.map((tipPercentage) => {
+      return (
+        <button
+          key={tipPercentage.label}
+          className={`btn-primary  ${
+            activeButton === tipPercentage.value
+              ? "bg-light-grayish-cyan-200 text-very-dark-cyan"
+              : ""
+          }`}
+          onClick={() => handleSelectedButton(tipPercentage.value)}
+        >
+          {tipPercentage.label}
+        </button>
+      );
+    });
+  };
+
   return (
     <div className="flex flex-col gap-6">
       <form className="flex flex-col">
@@ -64,15 +89,7 @@ const Control: React.FunctionComponent = () => {
           Select Tip %
         </p>
         <div className="grid grid-cols-2 gap-5 text-3xl md:grid-cols-3 md:gap-2 md:text-sm">
-          {tipOptions.map((tip) => (
-            <button
-              key={tip.label}
-              className="btn-primary"
-              onClick={() => handleTipChange(tip.value)}
-            >
-              {tip.label}
-            </button>
-          ))}
+          {renderTipButtons()}
           <button className="btn-secondary">Custom</button>
         </div>
       </div>
@@ -99,4 +116,4 @@ const Control: React.FunctionComponent = () => {
   );
 };
 
-export default Control;
+export default Controller;

@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import Card from "./components/Card";
 import Console from "./components/Console";
-import Control from "./components/Control";
+import Controller from "./components/Controller";
 
 const App = (): ReactElement => {
   return (
@@ -11,7 +11,7 @@ const App = (): ReactElement => {
         <h1>TTER</h1>
       </div>
       <Card>
-        <Control />
+        <Controller />
         <Console />
       </Card>
     </div>
