@@ -11,6 +11,7 @@ const Controller: React.FunctionComponent = () => {
     { label: "15%", value: 0.15 },
     { label: "25%", value: 0.25 },
     { label: "50%", value: 0.5 },
+    { label: "Custom", value: 0 },
   ];
 
   const {
@@ -50,8 +51,27 @@ const Controller: React.FunctionComponent = () => {
     handleTipChange(value);
   };
 
+  const handleCustomTip = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const value = Number(event.target.value);
+    setActiveButton(value);
+    handleTipChange(value / 100);
+  };
+
   const renderTipButtons = (): JSX.Element[] => {
     return tipOptions.map((tipPercentage) => {
+      if (tipPercentage.label === "Custom") {
+        return (
+          <input
+            key={tipPercentage.label}
+            type="number"
+            placeholder="Custom"
+            className="rounded bg-light-grayish-cyan-100 p-1 text-right text-2xl font-bold text-very-dark-cyan placeholder:text-center md:text-sm"
+            onChange={handleCustomTip}
+          />
+        );
+      }
       return (
         <button
           key={tipPercentage.label}
@@ -90,7 +110,7 @@ const Controller: React.FunctionComponent = () => {
         </p>
         <div className="grid grid-cols-2 gap-5 text-3xl md:grid-cols-3 md:gap-2 md:text-sm">
           {renderTipButtons()}
-          <button className="btn-secondary">Custom</button>
+          {/* <button className="btn-secondary">Custom</button> */}
         </div>
       </div>
 
