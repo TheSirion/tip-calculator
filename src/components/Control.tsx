@@ -46,7 +46,7 @@ const Control: React.FunctionComponent = () => {
   return (
     <div className="flex flex-col gap-6">
       <form className="flex flex-col">
-        <label className="mb-1 text-sm font-bold text-dark-grayish-cyan-200">
+        <label className="mb-1 text-2xl font-bold text-dark-grayish-cyan-200 md:text-sm">
           Bill
         </label>
         <input
@@ -55,15 +55,15 @@ const Control: React.FunctionComponent = () => {
           type="number"
           onChange={inputHandler}
           placeholder="$ 0"
-          className="rounded bg-light-grayish-cyan-100 p-1 text-right font-bold text-very-dark-cyan"
+          className="rounded bg-light-grayish-cyan-100 p-1 text-right text-2xl font-bold text-very-dark-cyan md:text-sm"
         />
       </form>
 
       <div>
-        <p className="mb-2 text-sm font-bold text-dark-grayish-cyan-200">
+        <p className="mb-2 text-2xl font-bold text-dark-grayish-cyan-200 md:text-sm">
           Select Tip %
         </p>
-        <div className="grid grid-cols-3 grid-rows-2 gap-2">
+        <div className="grid grid-cols-2 gap-5 text-3xl md:grid-cols-3 md:gap-2 md:text-sm">
           {tipOptions.map((tip) => (
             <button
               key={tip.label}
@@ -78,7 +78,7 @@ const Control: React.FunctionComponent = () => {
       </div>
 
       <form className="flex flex-col">
-        <label className="mb-1 rounded-md text-sm font-bold text-dark-grayish-cyan-200">
+        <label className="mb-1 rounded-md text-2xl font-bold text-dark-grayish-cyan-200 md:text-sm">
           Number of People
         </label>
         {!isNumPeopleValid && (
@@ -90,7 +90,7 @@ const Control: React.FunctionComponent = () => {
           type="number"
           onChange={inputHandler}
           placeholder="0"
-          className={`rounded border-2 bg-light-grayish-cyan-100 p-1 text-right font-bold text-very-dark-cyan ${
+          className={`rounded border-2 bg-light-grayish-cyan-100 p-1 text-right text-2xl font-bold text-very-dark-cyan md:text-sm ${
             isNumPeopleValid ? "" : "invalid:border-red-500"
           }`}
         />

@@ -17,13 +17,13 @@ const Console: React.FunctionComponent = () => {
         return (
           <div key={s}>
             <div className="my-4 grid grid-cols-2 grid-rows-2">
-              <div className="row-start-1 row-end-2 text-sm font-bold text-white">
+              <div className="row-start-1 row-end-2 text-2xl font-bold text-white lg:text-sm">
                 {s}
               </div>
-              <div className="row-start-2 row-end-3 text-xs text-dark-grayish-cyan-100">
+              <div className="row-start-2 row-end-3 text-xl text-dark-grayish-cyan-100 lg:text-xs">
                 / person
               </div>
-              <div className="row-span-2 text-right text-3xl font-bold text-strong-cyan">
+              <div className="row-span-2 text-right text-5xl font-bold text-strong-cyan lg:text-2xl">
                 {`$${values[i]}`}
               </div>
             </div>
@@ -32,7 +32,7 @@ const Console: React.FunctionComponent = () => {
       })}
       <button
         onClick={resetValues}
-        className="mt-auto w-full rounded-md bg-strong-cyan py-2 text-sm font-bold text-very-dark-cyan active:bg-light-grayish-cyan-200"
+        className="mt-auto w-full rounded-md bg-strong-cyan py-2 text-3xl font-bold text-very-dark-cyan active:bg-light-grayish-cyan-200 lg:text-sm"
       >
         RESET
       </button>
