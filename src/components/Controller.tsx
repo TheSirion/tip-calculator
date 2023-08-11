@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { CalculatorContext } from "../contexts/Calculator.context";
 
 const Controller: React.FunctionComponent = () => {
+  const [isBillValid, setIsBillValid] = useState(true);
   const [isNumPeopleValid, setIsNumPeopleValid] = useState(true);
   const [activeButton, setActiveButton] = useState(0);
 
@@ -26,23 +27,37 @@ const Controller: React.FunctionComponent = () => {
     const value = Number(event.target.value);
     const name = event.target.name;
 
+    // if (name === "bill") {
+    //   handleBillChange(value);
+    // } else if (name === "numberOfPeople") {
+    //   if (!validateNum(value, setIsNumPeopleValid)) {
+    //     handleNumberOfPeopleChange(0);
+    //   }
+    //   handleNumberOfPeopleChange(value);
+    // }
+
     if (name === "bill") {
-      handleBillChange(value);
-    } else if (name === "numberOfPeople") {
-      if (!validateNumPeople(value)) {
-        handleNumberOfPeopleChange(0);
-      }
-      handleNumberOfPeopleChange(value);
+      validateNum(value, setIsBillValid, handleBillChange);
+    }
+
+    if (name === "numberOfPeople") {
+      validateNum(value, setIsNumPeopleValid, handleNumberOfPeopleChange);
     }
   };
 
-  const validateNumPeople = (value: number): boolean => {
+  const validateNum = (
+    value: number,
+    validator: Function,
+    setter: Function
+  ): void => {
     if (value <= 0) {
-      setIsNumPeopleValid(false);
-      return false;
+      validator(false);
+      setter(0);
+      return;
     }
-    setIsNumPeopleValid(true);
-    return true;
+
+    validator(true);
+    setter(value);
   };
 
   const handleSelectedButton = (value: number): void => {
@@ -102,8 +117,13 @@ const Controller: React.FunctionComponent = () => {
           type="number"
           onChange={inputHandler}
           placeholder="$"
-          className="input"
+          className={`input ${isBillValid ? "" : "border border-red-400"}`}
         />
+        {!isBillValid && (
+          <span className="text-bold text-xs text-red-400">
+            Cannot be zero or lower
+          </span>
+        )}
       </form>
 
       <div>
@@ -125,7 +145,7 @@ const Controller: React.FunctionComponent = () => {
           type="number"
           onChange={inputHandler}
           placeholder="👤"
-          className={`input ${isNumPeopleValid ? "" : "border-red-400"}`}
+          className={`input ${isNumPeopleValid ? "" : "border border-red-400"}`}
         />
         {!isNumPeopleValid && (
           <span className="text-bold text-xs text-red-400">
