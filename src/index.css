@@ -23,7 +23,7 @@
   }
 
   .btn-secondary {
-    @apply rounded-md bg-light-grayish-cyan-100 py-2 text-2xl font-bold text-dark-grayish-cyan-200;
+    @apply rounded-md py-2 text-2xl font-bold text-dark-grayish-cyan-200;
   }
 
   .btn-custom {

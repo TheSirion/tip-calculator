@@ -3,8 +3,8 @@ import { useContext } from "react";
 import { CalculatorContext } from "../contexts/Calculator.context";
 
 const Console: React.FunctionComponent = () => {
-  const { tipPerPerson, total, resetValues } = useContext(CalculatorContext);
-
+  const { total, tipPerPerson, resetValues, isResetButtonDisabled } =
+    useContext(CalculatorContext);
   const strings = ["Tip Amount", "Total"];
   const tipVal =
     tipPerPerson !== null && tipPerPerson !== Infinity
@@ -34,7 +34,9 @@ const Console: React.FunctionComponent = () => {
       })}
       <button
         onClick={resetValues}
-        className="mt-auto w-full rounded-md bg-strong-cyan py-2 text-3xl font-bold text-very-dark-cyan active:bg-light-grayish-cyan-200 lg:text-sm"
+        className={`mt-auto w-full rounded-md bg-strong-cyan py-2 text-3xl font-bold text-very-dark-cyan active:bg-light-grayish-cyan-200 lg:text-sm ${
+          isResetButtonDisabled ? "opacity-20" : ""
+        }`}
       >
         RESET
       </button>

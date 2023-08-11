@@ -1,4 +1,10 @@
-import { ReactElement, createContext, useEffect, useReducer } from "react";
+import {
+  ReactElement,
+  createContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 import {
   calculateBillWithTipPerPerson,
@@ -14,6 +20,7 @@ interface CalculatorContextType {
   numberOfPeople: number | null;
   tipPerPerson: number | null;
   total: number | null;
+  isResetButtonDisabled: boolean;
   handleBillChange: (billValue: number) => void;
   handleTipChange: (tipValue: number) => void;
   handleNumberOfPeopleChange: (numberOfPeopleValue: number) => void;
@@ -26,6 +33,7 @@ export const CalculatorContext = createContext<CalculatorContextType>({
   numberOfPeople: null,
   tipPerPerson: null,
   total: null,
+  isResetButtonDisabled: true,
   handleBillChange: () => {},
   handleTipChange: () => {},
   handleNumberOfPeopleChange: () => {},
@@ -40,6 +48,7 @@ export const CalculatorProvider = ({
   children,
 }: CalculatorProviderProps): ReactElement => {
   const [state, dispatch] = useReducer(calculatorReducer, initialState);
+  const [isResetButtonDisabled, setIsResetButtonDisabled] = useState(true);
 
   const { bill, tip, numberOfPeople, tipPerPerson, total } = state;
 
@@ -64,6 +73,18 @@ export const CalculatorProvider = ({
     dispatch(createAction(CALCULATOR_ACTION_TYPES.RESET_VALUES));
   };
 
+  const disableButton = (): void => {
+    if (
+      state.bill === initialState.bill &&
+      state.numberOfPeople === initialState.numberOfPeople &&
+      state.tip === initialState.tip
+    ) {
+      setIsResetButtonDisabled(true);
+    } else {
+      setIsResetButtonDisabled(false);
+    }
+  };
+
   useEffect(() => {
     if (bill !== null && tip !== null && numberOfPeople !== null) {
       const totalPerPerson = calculateBillWithTipPerPerson(
@@ -77,6 +98,7 @@ export const CalculatorProvider = ({
       );
       dispatch(createAction(CALCULATOR_ACTION_TYPES.SET_TOTAL, totalPerPerson));
     }
+    disableButton();
   }, [bill, tip, numberOfPeople, tipPerPerson, total]);
 
   const value: CalculatorContextType = {
@@ -85,6 +107,7 @@ export const CalculatorProvider = ({
     numberOfPeople,
     tipPerPerson,
     total,
+    isResetButtonDisabled,
     handleBillChange,
     handleTipChange,
     handleNumberOfPeopleChange,
