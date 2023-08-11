@@ -6,11 +6,16 @@ const Console: React.FunctionComponent = () => {
   const { total, tipPerPerson, resetValues, isResetButtonDisabled } =
     useContext(CalculatorContext);
   const strings = ["Tip Amount", "Total"];
+
   const tipVal =
-    tipPerPerson !== null && tipPerPerson !== Infinity
+    tipPerPerson !== null && tipPerPerson !== Infinity && !isNaN(tipPerPerson)
       ? tipPerPerson.toFixed(2)
       : 0;
-  const totalVal = total !== null && total !== Infinity ? total.toFixed(2) : 0;
+  const totalVal =
+    total !== null && total !== Infinity && !isNaN(total)
+      ? total.toFixed(2)
+      : 0;
+
   const values = [tipVal, totalVal];
 
   return (
