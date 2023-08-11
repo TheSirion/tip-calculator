@@ -25,7 +25,7 @@ const Console: React.FunctionComponent = () => {
               <div className="row-start-2 row-end-3 text-xl text-dark-grayish-cyan-100 lg:text-xs">
                 / person
               </div>
-              <div className="row-span-2 text-right text-5xl font-bold text-strong-cyan lg:text-2xl">
+              <div className="row-span-2 text-right text-4xl font-bold text-strong-cyan lg:text-2xl xl:text-4xl">
                 {`$${values[i]}`}
               </div>
             </div>

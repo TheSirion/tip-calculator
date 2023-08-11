@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
 
 @layer base {
   * {
-    font-family: 'Space Mono', monospace;
+    font-family: "Space Mono", monospace;
   }
 
   input[type="number"]::-webkit-inner-spin-button,
@@ -19,10 +19,18 @@
 
 @layer components {
   .btn-primary {
-    @apply py-2 font-bold bg-very-dark-cyan text-white rounded-md transition ease-in duration-150;
+    @apply rounded-md bg-very-dark-cyan py-2 text-2xl font-bold text-white transition duration-100 ease-in;
   }
 
   .btn-secondary {
-    @apply py-2 font-bold bg-light-grayish-cyan-100 text-dark-grayish-cyan-200 rounded-md;
+    @apply rounded-md bg-light-grayish-cyan-100 py-2 text-2xl font-bold text-dark-grayish-cyan-200;
+  }
+
+  .btn-custom {
+    @apply input;
+  }
+
+  .input {
+    @apply rounded-md border-2 bg-light-grayish-cyan-100 p-1 text-right text-2xl font-bold text-very-dark-cyan focus:border-light-grayish-cyan-200 md:text-xl lg:text-sm;
   }
 }

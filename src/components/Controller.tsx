@@ -16,7 +16,6 @@ const Controller: React.FunctionComponent = () => {
 
   const {
     bill,
-    tip,
     numberOfPeople,
     handleBillChange,
     handleTipChange,
@@ -61,17 +60,20 @@ const Controller: React.FunctionComponent = () => {
 
   const renderTipButtons = (): JSX.Element[] => {
     return tipOptions.map((tipPercentage) => {
+      // Se tipPercentage.label for "Custom", renderiza um input para
+      // adicionar valor customizado
       if (tipPercentage.label === "Custom") {
         return (
           <input
             key={tipPercentage.label}
             type="number"
             placeholder="Custom"
-            className="rounded bg-light-grayish-cyan-100 p-1 text-right text-2xl font-bold text-very-dark-cyan placeholder:text-center md:text-sm"
+            className="btn-custom"
             onChange={handleCustomTip}
           />
         );
       }
+
       return (
         <button
           key={tipPercentage.label}
@@ -91,7 +93,7 @@ const Controller: React.FunctionComponent = () => {
   return (
     <div className="flex flex-col gap-6">
       <form className="flex flex-col">
-        <label className="mb-1 text-2xl font-bold text-dark-grayish-cyan-200 md:text-sm">
+        <label className="mb-1 text-2xl font-bold text-dark-grayish-cyan-200  md:text-xl lg:text-sm">
           Bill
         </label>
         <input
@@ -99,27 +101,26 @@ const Controller: React.FunctionComponent = () => {
           name="bill"
           type="number"
           onChange={inputHandler}
-          placeholder="$ 0"
-          className="rounded bg-light-grayish-cyan-100 p-1 text-right text-2xl font-bold text-very-dark-cyan md:text-sm"
+          placeholder="$"
+          className="input"
         />
       </form>
 
       <div>
-        <p className="mb-2 text-2xl font-bold text-dark-grayish-cyan-200 md:text-sm">
+        <p className="mb-2 text-2xl font-bold text-dark-grayish-cyan-200 md:text-xl lg:text-sm">
           Select Tip %
         </p>
-        <div className="grid grid-cols-2 gap-5 text-3xl md:grid-cols-3 md:gap-2 md:text-sm">
+        <div className="grid grid-cols-2 gap-5 text-3xl md:grid-cols-3 md:gap-2 md:text-xl lg:text-sm">
           {renderTipButtons()}
-          {/* <button className="btn-secondary">Custom</button> */}
         </div>
       </div>
 
       <form className="flex flex-col">
-        <label className="mb-1 rounded-md text-2xl font-bold text-dark-grayish-cyan-200 md:text-sm">
+        <label className="mb-1 rounded-md text-2xl font-bold text-dark-grayish-cyan-200 md:text-xl lg:text-sm">
           Number of People
         </label>
         {!isNumPeopleValid && (
-          <span className="text-xs text-red-500">Cannot be zero</span>
+          <span className="text-xs text-red-400">Cannot be zero or lower</span>
         )}
         <input
           value={numberOfPeople ?? ""}
@@ -127,9 +128,7 @@ const Controller: React.FunctionComponent = () => {
           type="number"
           onChange={inputHandler}
           placeholder="0"
-          className={`rounded border-2 bg-light-grayish-cyan-100 p-1 text-right text-2xl font-bold text-very-dark-cyan md:text-sm ${
-            isNumPeopleValid ? "" : "invalid:border-red-500"
-          }`}
+          className={`input ${isNumPeopleValid ? "" : "border-red-400"}`}
         />
       </form>
     </div>
