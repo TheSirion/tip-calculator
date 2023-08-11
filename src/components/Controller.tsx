@@ -106,7 +106,7 @@ const Controller: React.FunctionComponent = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <section className="flex flex-col gap-6">
       <form className="flex flex-col">
         <label className="mb-1 text-2xl font-bold text-dark-grayish-cyan-200  md:text-xl lg:text-sm">
           Bill
@@ -153,7 +153,7 @@ const Controller: React.FunctionComponent = () => {
           </span>
         )}
       </form>
-    </div>
+    </section>
   );
 };
 

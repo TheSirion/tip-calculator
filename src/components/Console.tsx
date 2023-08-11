@@ -19,7 +19,7 @@ const Console: React.FunctionComponent = () => {
   const values = [tipVal, totalVal];
 
   return (
-    <div className="flex flex-col justify-start rounded-lg bg-very-dark-cyan p-5">
+    <section className="flex flex-col justify-start rounded-lg bg-very-dark-cyan p-5">
       {strings.map((s, i) => {
         return (
           <div key={s}>
@@ -45,7 +45,7 @@ const Console: React.FunctionComponent = () => {
       >
         RESET
       </button>
-    </div>
+    </section>
   );
 };
 
