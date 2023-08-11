@@ -119,17 +119,19 @@ const Controller: React.FunctionComponent = () => {
         <label className="mb-1 rounded-md text-2xl font-bold text-dark-grayish-cyan-200 md:text-xl lg:text-sm">
           Number of People
         </label>
-        {!isNumPeopleValid && (
-          <span className="text-xs text-red-400">Cannot be zero or lower</span>
-        )}
         <input
           value={numberOfPeople ?? ""}
           name="numberOfPeople"
           type="number"
           onChange={inputHandler}
-          placeholder="0"
+          placeholder="👤"
           className={`input ${isNumPeopleValid ? "" : "border-red-400"}`}
         />
+        {!isNumPeopleValid && (
+          <span className="text-bold text-xs text-red-400">
+            Cannot be zero or lower
+          </span>
+        )}
       </form>
     </div>
   );

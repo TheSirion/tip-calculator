@@ -27,10 +27,10 @@
   }
 
   .btn-custom {
-    @apply input;
+    @apply input placeholder:text-center;
   }
 
   .input {
-    @apply rounded-md border-2 bg-light-grayish-cyan-100 p-1 text-right text-2xl font-bold text-very-dark-cyan focus:border-light-grayish-cyan-200 md:text-xl lg:text-sm;
+    @apply rounded-md placeholder:text-left bg-light-grayish-cyan-100 p-1 text-right text-2xl font-bold text-very-dark-cyan focus:border focus:border-light-grayish-cyan-200 md:text-xl lg:text-sm;
   }
 }
