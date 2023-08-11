@@ -24,17 +24,10 @@ const Controller: React.FunctionComponent = () => {
   } = useContext(CalculatorContext);
 
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+
     const value = Number(event.target.value);
     const name = event.target.name;
-
-    // if (name === "bill") {
-    //   handleBillChange(value);
-    // } else if (name === "numberOfPeople") {
-    //   if (!validateNum(value, setIsNumPeopleValid)) {
-    //     handleNumberOfPeopleChange(0);
-    //   }
-    //   handleNumberOfPeopleChange(value);
-    // }
 
     if (name === "bill") {
       validateNum(value, setIsBillValid, handleBillChange);
@@ -92,6 +85,7 @@ const Controller: React.FunctionComponent = () => {
       return (
         <button
           key={tipPercentage.label}
+          type="button"
           className={`btn-primary  ${
             activeButton === tipPercentage.value
               ? "bg-light-grayish-cyan-200 text-very-dark-cyan"
@@ -107,7 +101,7 @@ const Controller: React.FunctionComponent = () => {
 
   return (
     <section className="flex flex-col gap-6">
-      <form className="flex flex-col">
+      <form className="flex flex-col" onSubmit={(e) => e.preventDefault()}>
         <label className="mb-1 text-2xl font-bold text-dark-grayish-cyan-200  md:text-xl lg:text-sm">
           Bill
         </label>
@@ -135,7 +129,7 @@ const Controller: React.FunctionComponent = () => {
         </div>
       </div>
 
-      <form className="flex flex-col">
+      <form className="flex flex-col" onSubmit={(e) => e.preventDefault()}>
         <label className="mb-1 rounded-md text-2xl font-bold text-dark-grayish-cyan-200 md:text-xl lg:text-sm">
           Number of People
         </label>
